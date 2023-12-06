@@ -1,0 +1,35 @@
+import unittest
+from datetime import datetime
+
+from battery.splinder import SplinderBattery
+from battery.nubbin import NubbinBattery
+
+class TestSplinder(unittest.TestCase):
+    def battery_should_not_be_replaced(self):
+        current = datetime.today().date()
+        last = current.replace(year=current.year - 1)
+        batteries = SplinderBattery(last, current)
+
+        self.assertFalse(batteries.needs_service())
+
+    def battery_should_not_be_replaced(self):
+        current = datetime.today().date()
+        last = current.replace(year=current.year - 3)
+        batteries = NubbinBattery(last, current)
+
+        self.assertTrue(batteries.needs_service())
+
+class TestNubbin(unittest.TestCase):
+    def battery_should_not_be_replaced(self):
+        current = datetime.today().date()
+        last = current.replace(year=current.year - 5)
+        batteries = NubbinBattery(last, current)
+
+        self.assertFalse(batteries.needs_service())
+
+    def battery_should_not_be_replaced(self):
+        current = datetime.today().date()
+        last = current.replace(year=current.year - 3)
+        batteries = SplinderBattery(last, current)
+
+        self.assertTrue(batteries.needs_service())
