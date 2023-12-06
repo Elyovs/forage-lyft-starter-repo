@@ -10,13 +10,13 @@
 #         pass
 
 from Servicable import Servicable
-from abc import abstractmethod
+# from abc import abstractmethod
 
 class Car(Servicable):
     def __init__(self, Engine, Battery):
         self.engine = Engine
         self.battery = Battery
 
-    @abstractmethod
+    # @abstractmethod
     def needs_service(self):
-        pass
+        return self.engine.needs_service() or self.battery.needs_service()
