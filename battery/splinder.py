@@ -6,4 +6,4 @@ class SplinderBattery(Battery):
         self.current_service_data = current_date
 
     def needs_service(self):
-        return (self.current_service_data - self.last_service_data) >= 2
+        return (self.current_service_data - self.last_service_data) >= 3
